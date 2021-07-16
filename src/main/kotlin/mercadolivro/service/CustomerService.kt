@@ -25,18 +25,21 @@ class CustomerService {
         val id = if (customers.isEmpty()) {
             1
         } else {
-            (customers.last().id?.toInt() ?: 0) + 1
+            customers.last().id!!.toInt() + 1
         }.toString()
-        customers.add(CustomerModel(id, customer.name, customer.email))
+
+        customer.id = id
+
+        customers.add(customer)
     }
 
     fun getCustomer(id: String): CustomerModel {
         return customers.filter { it.id == id }.first() //Ao encontrar para no primeiro registro o ID é unico
     }
 
-    fun update(id: String, customer: PutCustomerRequest) {
+    fun update(customer: CustomerModel) {
         //Ao encontrar para no primeiro registro o ID é unico
-        customers.filter { it.id == id }.first().let {
+        customers.filter { it.id == customer.id }.first().let {
             it.name = customer.name
             it.email = customer.email
         }
