@@ -18,9 +18,9 @@ class CustomerService(
 
     fun getAll(name: String?): List<CustomerModel> {
         name?.let {
-            return customers.filter { it.name.contains(name, true) }
+            return customerRepository.findByNameContaining(it)
         }
-        return customers
+        return customerRepository.findAll().toList()
     }
 
     fun create(customer: CustomerModel) {
@@ -32,14 +32,16 @@ class CustomerService(
     }
 
     fun update(customer: CustomerModel) {
-        //Ao encontrar para no primeiro registro o ID é unico
-        customers.filter { it.id == customer.id }.first().let {
-            it.name = customer.name
-            it.email = customer.email
+        if (!customerRepository.existsById(customer.id!!)) {
+            throw Exception("Id not exists.")
         }
     }
 
     fun delete(id: Int) {
-        customers.removeIf { it.id == id }
+        if (!customerRepository.existsById(id)) {
+            throw Exception("Id not exists.")
+        }
+
+        customerRepository.deleteById(id)
     }
 }
