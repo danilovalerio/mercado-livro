@@ -3,12 +3,15 @@ package mercadolivro.controller
 import mercadolivro.controller.request.PostCustomerRequest
 import mercadolivro.controller.request.PutCustomerRequest
 import mercadolivro.model.CustomerModel
+import mercadolivro.service.CustomerService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("customer")
-class CustomerController {
+class CustomerController(
+    val customerServe: CustomerService //Injeta a service para o controller fazer uso
+) {
 
     val customers = mutableListOf<CustomerModel>()
 
