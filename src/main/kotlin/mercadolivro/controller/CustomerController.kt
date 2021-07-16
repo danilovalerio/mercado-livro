@@ -10,17 +10,12 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("customer")
 class CustomerController(
-    val customerServe: CustomerService //Injeta a service para o controller fazer uso
+    val customerService: CustomerService //Injeta a service para o controller fazer uso
 ) {
-
-    val customers = mutableListOf<CustomerModel>()
 
     @GetMapping
     fun getAll(@RequestParam name: String?): List<CustomerModel> {
-        name?.let {
-            return customers.filter { it.name.contains(name, true) }
-        }
-        return customers
+        return customerService.getAll(name)
     }
 
     @PostMapping
