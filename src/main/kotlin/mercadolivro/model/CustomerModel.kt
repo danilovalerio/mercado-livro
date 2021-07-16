@@ -1,7 +1,7 @@
 package mercadolivro.model
 
 data class CustomerModel(
-    var id: String? = null,
+    var id: Int? = null,
     var name: String,
     var email: String
 )
