@@ -20,6 +20,7 @@ class CustomerService {
         return customers
     }
 
+    //TODO:Aqui nao deveria receber um customerRequest e sim um objeto pronto
     fun create(customer: PostCustomerRequest) {
         val id = if (customers.isEmpty()) {
             1
