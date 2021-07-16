@@ -9,12 +9,8 @@ import org.springframework.web.bind.annotation.RestController
 class CustomerController {
 
     @GetMapping
-    fun helloWorld(): String {
+    fun getCustomer(): String {
         return "Customer 1"
     }
 
-    @GetMapping("/2")
-    fun customer2(): String {
-        return "Customer 2"
-    }
 }
