@@ -21,34 +21,23 @@ class CustomerController(
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED) //Especifica que o recurso foi criado com sucesso
     fun create(@RequestBody customer: PostCustomerRequest) {
-        val id = if (customers.isEmpty()) {
-            1
-        } else {
-            customers.last().id.toInt() + 1
-        }.toString()
-        customers.add(CustomerModel(id, customer.name, customer.email))
+        customerService.create(customer)
     }
 
     @GetMapping("/{id}")
     fun getCustomer(@PathVariable id: String): CustomerModel {
-        return customers.filter { it.id == id }.first() //Ao encontrar para no primeiro registro o ID é unico
+        return customerService.getCustomer(id)
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun update(@PathVariable id: String, @RequestBody customer: PutCustomerRequest) {
-        //Ao encontrar para no primeiro registro o ID é unico
-        customers.filter { it.id == id }.first().let {
-            it.name = customer.name
-            it.email = customer.email
-        }
+        customerService.update(id, customer)
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun delete(@PathVariable id: String) {
-        customers.removeIf { it.id == id }
+        customerService.delete(id)
     }
-
-
 }
