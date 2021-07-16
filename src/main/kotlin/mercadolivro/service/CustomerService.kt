@@ -21,11 +21,11 @@ class CustomerService {
     }
 
     //TODO:Aqui nao deveria receber um customerRequest e sim um objeto pronto
-    fun create(customer: PostCustomerRequest) {
+    fun create(customer: CustomerModel) {
         val id = if (customers.isEmpty()) {
             1
         } else {
-            customers.last().id.toInt() + 1
+            (customers.last().id?.toInt() ?: 0) + 1
         }.toString()
         customers.add(CustomerModel(id, customer.name, customer.email))
     }

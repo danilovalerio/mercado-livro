@@ -21,7 +21,7 @@ class CustomerController(
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED) //Especifica que o recurso foi criado com sucesso
     fun create(@RequestBody customer: PostCustomerRequest) {
-        customerService.create(customer)
+        customerService.create(customer.toCustomerModel())
     }
 
     @GetMapping("/{id}")
