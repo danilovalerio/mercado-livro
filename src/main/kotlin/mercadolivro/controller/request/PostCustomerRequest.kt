@@ -9,8 +9,4 @@ import mercadolivro.model.CustomerModel
 data class PostCustomerRequest(
     val name: String,
     val email: String
-) {
-    fun toCustomerModel(): CustomerModel {
-        return CustomerModel(name = this.name,email = this.email)
-    }
-}
+)

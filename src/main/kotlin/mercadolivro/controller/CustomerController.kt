@@ -2,6 +2,7 @@ package mercadolivro.controller
 
 import mercadolivro.controller.request.PostCustomerRequest
 import mercadolivro.controller.request.PutCustomerRequest
+import mercadolivro.extension.toCustomerModel
 import mercadolivro.model.CustomerModel
 import mercadolivro.service.CustomerService
 import org.springframework.http.HttpStatus
