@@ -30,17 +30,23 @@ class CustomerController {
 
     @GetMapping("/{id}")
     fun getCustomer(@PathVariable id: String): CustomerModel {
-        return customers.filter { it.id == id}.first() //Ao encontrar para no primeiro registro o ID é unico
+        return customers.filter { it.id == id }.first() //Ao encontrar para no primeiro registro o ID é unico
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun update(@PathVariable id: String, @RequestBody customer: PutCustomerRequest) {
         //Ao encontrar para no primeiro registro o ID é unico
-        customers.filter { it.id == id}.first().let {
+        customers.filter { it.id == id }.first().let {
             it.name = customer.name
             it.email = customer.email
         }
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun delete(@PathVariable id: String) {
+        customers.removeIf { it.id == id }
     }
 
 
