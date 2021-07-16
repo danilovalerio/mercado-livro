@@ -2,6 +2,6 @@ package mercadolivro.model
 
 data class CustomerModel(
     var id: String,
-    val name: String,
-    val email: String
+    var name: String,
+    var email: String
 )
