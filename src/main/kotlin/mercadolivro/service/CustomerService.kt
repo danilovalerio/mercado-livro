@@ -3,13 +3,16 @@ package mercadolivro.service
 import mercadolivro.controller.request.PostCustomerRequest
 import mercadolivro.controller.request.PutCustomerRequest
 import mercadolivro.model.CustomerModel
+import mercadolivro.repository.CustomerRepository
 import org.springframework.stereotype.Service
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestParam
 
 @Service //Essa classe é uma service
-class CustomerService {
+class CustomerService(
+    val customerRepository: CustomerRepository
+) {
 
     val customers = mutableListOf<CustomerModel>()
 
@@ -20,21 +23,12 @@ class CustomerService {
         return customers
     }
 
-    //TODO:Aqui nao deveria receber um customerRequest e sim um objeto pronto
     fun create(customer: CustomerModel) {
-        val id = if (customers.isEmpty()) {
-            1
-        } else {
-            customers.last().id!!.toInt() + 1
-        }
-
-        customer.id = id
-
-        customers.add(customer)
+        customerRepository.save(customer)
     }
 
     fun getCustomer(id: Int): CustomerModel {
-        return customers.filter { it.id == id }.first() //Ao encontrar para no primeiro registro o ID é unico
+        return customerRepository.findById(id).orElseThrow()
     }
 
     fun update(customer: CustomerModel) {
