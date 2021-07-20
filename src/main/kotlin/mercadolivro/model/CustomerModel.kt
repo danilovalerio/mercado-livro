@@ -13,5 +13,6 @@ data class CustomerModel(
     @Column
     var email: String,
     @Column
+    @Enumerated(EnumType.STRING)
     var status: CustomerStatus
 )
