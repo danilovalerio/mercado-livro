@@ -4,3 +4,4 @@ Learn Kotlin + Spring
 - [x] Adicionar um status no customer para deleção lógica
 - [x] Bloqueio de status quando livros estiverem com status CANCELADO ou DELETADO
 - [x] Alterar o retorno das models, para evitar retorno de dados desnecessários ou sensíveis
+- [x] Paginação
