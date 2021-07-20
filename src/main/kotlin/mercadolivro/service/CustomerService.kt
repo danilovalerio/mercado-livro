@@ -1,17 +1,13 @@
 package mercadolivro.service
 
-import mercadolivro.controller.request.PostCustomerRequest
-import mercadolivro.controller.request.PutCustomerRequest
 import mercadolivro.model.CustomerModel
 import mercadolivro.repository.CustomerRepository
 import org.springframework.stereotype.Service
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestParam
 
 @Service //Essa classe é uma service
 class CustomerService(
-    val customerRepository: CustomerRepository
+    val customerRepository: CustomerRepository,
+    val bookService: BookService
 ) {
 
     val customers = mutableListOf<CustomerModel>()
@@ -27,7 +23,7 @@ class CustomerService(
         customerRepository.save(customer)
     }
 
-    fun getById(id: Int): CustomerModel {
+    fun findById(id: Int): CustomerModel {
         return customerRepository.findById(id).orElseThrow()
     }
 
@@ -38,9 +34,8 @@ class CustomerService(
     }
 
     fun delete(id: Int) {
-        if (!customerRepository.existsById(id)) {
-            throw Exception("Id not exists.")
-        }
+        val customer = findById(id)
+        bookService.deleteByCustomer(customer)
 
         customerRepository.deleteById(id)
     }
