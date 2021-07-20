@@ -2,7 +2,9 @@ package mercadolivro.controller
 
 import mercadolivro.controller.request.PostCustomerRequest
 import mercadolivro.controller.request.PutCustomerRequest
+import mercadolivro.controller.response.CustomerReponse
 import mercadolivro.extension.toCustomerModel
+import mercadolivro.extension.toResponse
 import mercadolivro.model.CustomerModel
 import mercadolivro.service.CustomerService
 import org.springframework.http.HttpStatus
@@ -15,8 +17,8 @@ class CustomerController(
 ) {
 
     @GetMapping
-    fun getAll(@RequestParam name: String?): List<CustomerModel> {
-        return customerService.getAll(name)
+    fun getAll(@RequestParam name: String?): List<CustomerReponse> {
+        return customerService.getAll(name).map { it.toResponse() }
     }
 
     @PostMapping
@@ -26,8 +28,8 @@ class CustomerController(
     }
 
     @GetMapping("/{id}")
-    fun getCustomer(@PathVariable id: Int): CustomerModel {
-        return customerService.findById(id)
+    fun getCustomer(@PathVariable id: Int): CustomerReponse {
+        return customerService.findById(id).toResponse()
     }
 
     @PutMapping("/{id}")

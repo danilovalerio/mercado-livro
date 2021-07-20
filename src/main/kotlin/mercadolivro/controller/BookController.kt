@@ -2,7 +2,9 @@ package mercadolivro.controller
 
 import mercadolivro.controller.request.PostBookRequest
 import mercadolivro.controller.request.PutBookRequest
+import mercadolivro.controller.response.BookResponse
 import mercadolivro.extension.toBookModel
+import mercadolivro.extension.toResponse
 import mercadolivro.model.BookModel
 import mercadolivro.service.BookService
 import mercadolivro.service.CustomerService
@@ -25,17 +27,17 @@ class BookController(
     }
 
     @GetMapping
-    fun getAll(): List<BookModel> {
-        return bookService.getAll()
+    fun getAll(): List<BookResponse> {
+        return bookService.getAll().map { it.toResponse() }
     }
 
     @GetMapping("/active")
-    fun findActives(): List<BookModel> =
-        bookService.findActives()
+    fun findActives(): List<BookResponse> =
+        bookService.findActives().map { it.toResponse() }
 
     @GetMapping("/{id}")
-    fun findById(@PathVariable id: Int): BookModel =
-        bookService.findById(id)
+    fun findById(@PathVariable id: Int): BookResponse =
+        bookService.findById(id).toResponse()
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
