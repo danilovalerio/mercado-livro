@@ -4,6 +4,8 @@ import mercadolivro.enums.BookStatus
 import mercadolivro.model.BookModel
 import mercadolivro.model.CustomerModel
 import mercadolivro.repository.BookRepository
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 @Service
@@ -14,8 +16,8 @@ class BookService(
         bookRepository.save(book)
     }
 
-    fun getAll(): List<BookModel> {
-        return bookRepository.findAll().toList()
+    fun getAll(pageable: Pageable): Page<BookModel> {
+        return bookRepository.findAll(pageable)
     }
 
     fun findActives(): List<BookModel> {
