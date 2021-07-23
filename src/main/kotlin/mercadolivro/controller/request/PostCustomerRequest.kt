@@ -1,5 +1,7 @@
 package mercadolivro.controller.request
 
+import mercadolivro.exception.EMAIL_INVALIDO
+import mercadolivro.exception.NOME_VAZIO
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotEmpty
 
@@ -8,9 +10,9 @@ import javax.validation.constraints.NotEmpty
  * Pois não faz sentido, tem que ser controlado internamente
  */
 data class PostCustomerRequest(
-    @field:NotEmpty(message = "Nome deve ser informado.")
+    @field:NotEmpty(message = NOME_VAZIO)
     val name: String,
 
-    @field:Email(message = "E-mail deve ser valido.")
+    @field:Email(message = EMAIL_INVALIDO)
     val email: String
 )
