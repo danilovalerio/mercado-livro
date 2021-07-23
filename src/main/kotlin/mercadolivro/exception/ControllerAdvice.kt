@@ -38,10 +38,10 @@ class ControllerAdvice {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException::class)
-    fun handleBadRequestException(ex: MethodArgumentNotValidException, request: WebRequest): ResponseEntity<ErrorResponse> {
+    fun handleMethodArgumentNotValidException(ex: MethodArgumentNotValidException, request: WebRequest): ResponseEntity<ErrorResponse> {
         val error = ErrorResponse(
             HttpStatus.UNPROCESSABLE_ENTITY.value(),
-            ex.message,
+            Errors.ML001.message,
             Errors.ML001.code,
             //Pega a mensagem padrão e campo e converte para nosso FieldErrorResponse
             ex.bindingResult.fieldErrors.map { FieldErrorResponse(it.defaultMessage ?: "invalid", it.field) }

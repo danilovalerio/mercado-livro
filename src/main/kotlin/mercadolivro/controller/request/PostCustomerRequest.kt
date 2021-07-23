@@ -8,9 +8,9 @@ import javax.validation.constraints.NotEmpty
  * Pois não faz sentido, tem que ser controlado internamente
  */
 data class PostCustomerRequest(
-    @field:NotEmpty
+    @field:NotEmpty(message = "Nome deve ser informado.")
     val name: String,
 
-    @field:Email
+    @field:Email(message = "E-mail deve ser valido.")
     val email: String
 )
