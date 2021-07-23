@@ -1,6 +1,5 @@
 package mercadolivro.controller.request
 
-import mercadolivro.model.CustomerModel
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotEmpty
 
