@@ -5,4 +5,5 @@ Learn Kotlin + Spring
 - [x] Bloqueio de status quando livros estiverem com status CANCELADO ou DELETADO
 - [x] Alterar o retorno das models, para evitar retorno de dados desnecessários ou sensíveis
 - [x] Paginação
-- [ ] Tratativas para deixar erroas amigáveis
+- [x] Tratativas para deixar erroas amigáveis
+- [ ] Validações nas requisições com Spring Validator
