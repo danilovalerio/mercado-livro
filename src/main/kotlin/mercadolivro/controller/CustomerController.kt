@@ -9,6 +9,7 @@ import mercadolivro.model.CustomerModel
 import mercadolivro.service.CustomerService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("customer")
@@ -23,7 +24,7 @@ class CustomerController(
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED) //Especifica que o recurso foi criado com sucesso
-    fun create(@RequestBody customer: PostCustomerRequest) {
+    fun create(@RequestBody @Valid customer: PostCustomerRequest) {
         customerService.create(customer.toCustomerModel())
     }
 
