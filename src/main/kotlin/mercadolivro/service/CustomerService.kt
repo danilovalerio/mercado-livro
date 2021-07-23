@@ -1,6 +1,8 @@
 package mercadolivro.service
 
 import mercadolivro.enums.CustomerStatus
+import mercadolivro.enums.Errors
+import mercadolivro.exception.NotFoundException
 import mercadolivro.model.CustomerModel
 import mercadolivro.repository.CustomerRepository
 import org.springframework.stereotype.Service
@@ -25,7 +27,8 @@ class CustomerService(
     }
 
     fun findById(id: Int): CustomerModel {
-        return customerRepository.findById(id).orElseThrow()
+        return customerRepository.findById(id)
+            .orElseThrow { NotFoundException(Errors.ML201.message.format(id), Errors.ML201.code) }
     }
 
     fun update(customer: CustomerModel) {
