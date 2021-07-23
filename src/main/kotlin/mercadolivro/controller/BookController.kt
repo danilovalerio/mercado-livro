@@ -22,7 +22,7 @@ class BookController(
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun create(@RequestBody request: PostBookRequest){
+    fun create(@RequestBody request: PostBookRequest){ //TODO: Adicionar validacao
         val customer = customerService.findById(request.customerId)
 
         bookService.create(request.toBookModel(customer))
@@ -49,7 +49,7 @@ class BookController(
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun update(@PathVariable id: Int, @RequestBody book: PutBookRequest) {
+    fun update(@PathVariable id: Int, @RequestBody book: PutBookRequest) { //TODO: Adicionar validacao
         val bookSaved = bookService.findById(id)
         bookService.update(book.toBookModel(bookSaved))
     }

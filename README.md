@@ -7,3 +7,4 @@ Learn Kotlin + Spring
 - [x] Paginação
 - [x] Tratativas para deixar erroas amigáveis
 - [ ] Validações nas requisições com Spring Validator
+- [ ] Criar Custom Validation (verificar se e-mail já existe)

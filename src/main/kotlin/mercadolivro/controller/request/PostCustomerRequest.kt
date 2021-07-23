@@ -2,6 +2,7 @@ package mercadolivro.controller.request
 
 import mercadolivro.exception.EMAIL_INVALIDO
 import mercadolivro.exception.NOME_VAZIO
+import mercadolivro.validation.EmailDisponivel
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotEmpty
 
@@ -14,5 +15,6 @@ data class PostCustomerRequest(
     val name: String,
 
     @field:Email(message = EMAIL_INVALIDO)
+    @EmailDisponivel(message = "E-mail já existe.")
     val email: String
 )
