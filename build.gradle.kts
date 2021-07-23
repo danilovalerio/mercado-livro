@@ -28,8 +28,8 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
-	implementation("io.springfox:springfo-swagger2:3.0.0")
-	implementation("io.springfox:springfo-swagger-ui:3.0.0")
+	implementation("io.springfox:springfox-swagger2:3.0.0")
+	implementation("io.springfox:springfox-swagger-ui:3.0.0")
 
 	implementation( "org.flywaydb:flyway-core:7.11.2")
 
