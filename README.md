@@ -8,3 +8,4 @@ Learn Kotlin + Spring
 - [x] Tratativas para deixar erroas amigáveis
 - [ ] Validações nas requisições com Spring Validator
 - [ ] Criar Custom Validation (verificar se e-mail já existe)
+- [ ] Swagger no projeto
